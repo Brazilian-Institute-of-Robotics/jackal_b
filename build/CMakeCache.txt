@@ -263,10 +263,10 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 
 //Value Computed by CMake
-advisoring_BINARY_DIR:STATIC=/home/frederico/jackal_b/build/advisoring
+advisoring_BINARY_DIR:STATIC=/home/frederico/jackal_b/build/bir
 
 //Value Computed by CMake
-advisoring_SOURCE_DIR:STATIC=/home/frederico/jackal_b/src/advisoring
+advisoring_SOURCE_DIR:STATIC=/home/frederico/jackal_b/src/bir
 
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/kinetic/share/catkin/cmake
