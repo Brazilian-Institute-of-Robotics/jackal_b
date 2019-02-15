@@ -1,0 +1,8 @@
+prefix=/home/frederico/jackal_b/devel
+
+Name: jackal_navigation
+Description: Description of jackal_navigation
+Version: 0.6.1
+Cflags: 
+Libs: -L/home/frederico/jackal_b/devel/lib 
+Requires: 

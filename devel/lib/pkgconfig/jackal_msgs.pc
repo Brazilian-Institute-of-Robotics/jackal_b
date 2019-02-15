@@ -1,0 +1,8 @@
+prefix=/home/frederico/jackal_b/devel
+
+Name: jackal_msgs
+Description: Description of jackal_msgs
+Version: 0.6.1
+Cflags: -I/home/frederico/jackal_b/devel/include
+Libs: -L/home/frederico/jackal_b/devel/lib 
+Requires: std_msgs message_runtime
