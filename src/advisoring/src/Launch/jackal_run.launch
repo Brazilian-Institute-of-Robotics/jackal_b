@@ -1,0 +1,11 @@
+<launch>
+ <include file="$(find jackal_gazebo)/launch/jackal_world.launch">
+  </include>  
+ <!-- joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="joy" >
+    <param name="deadzone" value="0.10" />
+    <param name="autorepeat_rate" value="20.0"/>
+  </node>
+  <!-- file that take the sensor msgs from the /joy topic, converts it to twist msgs and publishes into the /cmd_vel topic -->
+  <node pkg="advisoring" type="jackal_teleop.py" name="teleop"/>
+</launch>
