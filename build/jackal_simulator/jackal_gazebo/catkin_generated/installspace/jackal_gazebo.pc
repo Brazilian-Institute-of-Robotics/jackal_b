@@ -1,8 +1,0 @@
-prefix=/home/frederico/jackal_b/install
-
-Name: jackal_gazebo
-Description: Description of jackal_gazebo
-Version: 0.3.0
-Cflags: 
-Libs: -L/home/frederico/jackal_b/install/lib 
-Requires: 

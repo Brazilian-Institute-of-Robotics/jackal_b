@@ -1,8 +1,0 @@
-prefix=/home/frederico/jackal_b/install
-
-Name: jackal_tutorials
-Description: Description of jackal_tutorials
-Version: 0.6.1
-Cflags: 
-Libs: -L/home/frederico/jackal_b/install/lib 
-Requires: 

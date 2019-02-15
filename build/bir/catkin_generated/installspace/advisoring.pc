@@ -1,8 +1,0 @@
-prefix=/home/frederico/jackal_b/install
-
-Name: advisoring
-Description: Description of advisoring
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/frederico/jackal_b/install/lib 
-Requires: 
