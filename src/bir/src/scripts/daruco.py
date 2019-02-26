@@ -18,12 +18,17 @@ while(True):
     ret, frame = cap.read()
     #frame = cv2.imread("/home/marco/Desktop/bags/calibrations/img2/left0003.jpg")
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
     res = cv2.aruco.detectMarkers(gray, dictionary)
     
+
     if len(res[0]) > 0:
         cv2.aruco.drawDetectedMarkers(frame,res[0],res[1])
+        if res[1][0] == 2:
+            print("5")
     cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
     cv2.imshow('frame',frame)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
