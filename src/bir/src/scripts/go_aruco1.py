@@ -40,7 +40,8 @@ class Jackal():
         self.goal_pose[0] = data.x
         self.goal_pose[1] = data.y
         print("Recebi a mensagem:" + str(self.goal_pose[0]))
-            # self.move2goal()
+        if data.x != 0:
+            self.move2goal()
 
     def get_position_odom(self, msg):
         self._pose[0] = msg.pose.pose.position.x
@@ -53,8 +54,8 @@ class Jackal():
         return sqrt(pow((self.goal_pose[0]-self._pose[0]), 2) + pow((self.goal_pose[1] - self._pose[1]), 2))
     
         # Function to calculate the linear vel.
-    def linear_vel(self, goal_pose, constant=1.5):
-        return constant * self.distance(self.goal_pose, self._pose)
+    #def linear_vel(self, goal_pose, constant=1.5):
+        #return constant * self.distance(self.goal_pose, self._pose)
 
         #Funcion to calculate the angle.
     def teta(self, goal_pose, _pose):
@@ -66,49 +67,33 @@ class Jackal():
         print("Recebi o objetivo: " + str(self.goal_pose[0]))
 
        
-        erroAngle = (self.teta(self.goal_pose, self._pose) - (self._pose[2]))
+        erroAngle = (atan2(self.goal_pose[1] - self._pose[1], self.goal_pose[0] - self._pose[0])) - (self._pose[2])
 
-        if self.goal_pose [0] == [0] and self.goal_pose[1] == [0]:
+        if self.goal_pose [0] == 0 and self.goal_pose[1] == 0:
             vel_msg.linear.x = 0
             vel_msg.angular.z = 0
             self.velocity_publisher.publish(vel_msg)
+            print("Estou recebendo nada")
         else:
+            self.distance_print = self.distance(self.goal_pose , self._pose)
 
-            if self.distance(self.goal_pose , self._pose) >= self._tolerance:
-
+            while self.distance_print >= self._tolerance:
 
                 # Linear velocity in the x-axis.
-                if self.linear_vel(self.goal_pose) > 1:
-                    vel_msg.linear.x = 0.5
+            
+                vel_msg.linear.x = 0.5
+                # Angular Velocity in the z-axis.
+                #vel_msg.linear.y = erroAngle
+                if(erroAngle > self._pi): 
+                    erroAngle -= (2*(self._pi))
+                elif (erroAngle < -self._pi): 
+                    erroAngle += (2*(self._pi))
 
-                    # Angular Velocity in the z-axis.
-                    vel_msg.linear.y = erroAngle
-                    if(erroAngle > self._pi): 
-                            erroAngle -= (2*(self._pi))
-                    elif (erroAngle < -self._pi): 
-                        erroAngle += (2*(self._pi))
+                vel_msg.angular.z = erroAngle
 
-                    vel_msg.angular.z = erroAngle
-
-                    # Publishing our vel_msg
-                    self.velocity_publisher.publish(vel_msg)
-                else:
-                    vel_msg.linear.x = self.linear_vel(self.goal_pose)
-                    vel_msg.linear.y = 0
-                    vel_msg.linear.z = 0
-
-                    # Angular Velocity in the z-axis.
-                    vel_msg.linear.y = erroAngle
-                    if(erroAngle > self._pi): 
-                            erroAngle -= (2*(self._pi))
-                    elif (erroAngle < -self._pi): 
-                        erroAngle += (2*(self._pi))
-
-                    vel_msg.angular.z = erroAngle
-
-                    # Publishing our vel_msg
-                    self.velocity_publisher.publish(vel_msg)
-
+                # Publishing our vel_msg
+                print(vel_msg.linear.x)
+                self.velocity_publisher.publish(vel_msg)
             else:
                 # Stopping our robot after the movement is over.
                 vel_msg.linear.x = 0
@@ -116,7 +101,7 @@ class Jackal():
                 self.velocity_publisher.publish(vel_msg)
 
         # If we press control + C, the node will stop.
-            rospy.spin()
+        rospy.spin()
 if __name__ == "__main__":
     
     jackal = Jackal("/typea/position", "/typea/cmd_vel", 1)
@@ -124,5 +109,5 @@ if __name__ == "__main__":
     
     while(not rospy.is_shutdown()):
         # jackal.test()
-        jackal.move2goal()
+        # jackal.move2goal()
         whileRate.sleep()

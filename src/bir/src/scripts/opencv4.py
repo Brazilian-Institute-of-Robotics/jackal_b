@@ -22,7 +22,7 @@ class image_converter:
 
 
   def __init__(self):
-    self.image_pub = rospy.Publisher("image_topic_2",Image,  queue_size=10)
+    self.image_pub = rospy.Publisher("image_topic_2",Image,  queue_size=1)
 
     self.bridge = CvBridge()
     self.image_sub = rospy.Subscriber("/rrbot/camera1/image_raw",Image,self.callback)
@@ -45,21 +45,16 @@ class image_converter:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # Using the dictionary of arucos
     res = cv2.aruco.detectMarkers(gray, dictionary)
-    # Inicial Point
-    # goal = Point()
-    # goal.x = 0
-    # goal.y = 0
-    # self.goal_pose_pub.publish(goal)
-
+    # Logic to not send empty values
     if len(res[0]) > 0:
         cv2.aruco.drawDetectedMarkers(frame,res[0],res[1])
         #logic to reconize
         
         if res[1][0] == 1:
             goal = Point()
-            goal.x = 4
+            goal.x = 2
             goal.y = 2
-        self.goal_pose_pub.publish(goal)
+            self.goal_pose_pub.publish(goal)
             
 
     cv2.namedWindow('cv_image', cv2.WINDOW_NORMAL)
