@@ -57,8 +57,8 @@ class image_converter:
         
         if res[1][0] == 1:
             goal = Point()
-            goal.x = 4
-            goal.y = 2
+            goal.x = 10
+            goal.y = 0
             self.goal_pose_pub.publish(goal)
         if res[1][0] == 2:
           while contador <= 100:
