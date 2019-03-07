@@ -50,7 +50,7 @@ class image_converter:
     # goal.x = 0
     # goal.y = 0
     # self.goal_pose_pub.publish(goal)
-
+    contador = 0
     if len(res[0]) > 0:
         cv2.aruco.drawDetectedMarkers(frame,res[0],res[1])
         #logic to reconize
@@ -59,7 +59,18 @@ class image_converter:
             goal = Point()
             goal.x = 4
             goal.y = 2
-        self.goal_pose_pub.publish(goal)
+            self.goal_pose_pub.publish(goal)
+        if res[1][0] == 2:
+          while contador <= 100:
+            contador = contador +1
+            print(contador)
+            if contador >= 100:
+              goal = Point()
+              goal.x = 10
+              goal.y = 2
+              self.goal_pose_pub.publish(goal)
+              
+              
             
 
     cv2.namedWindow('cv_image', cv2.WINDOW_NORMAL)
