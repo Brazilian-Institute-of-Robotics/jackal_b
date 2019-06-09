@@ -23,10 +23,10 @@ class camera_client ():
     def callback(self,data):
         try:
             self.cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
-            self.gray = cv2.cvtColor(self.cv_image, cv2.COLOR_BGR2GRAY)
+            #self.gray = cv2.cvtColor(self.cv_image, cv2.COLOR_BGR2GRAY)
             cv2.waitKey(3)
             cv2.namedWindow('cv_image', cv2.WINDOW_NORMAL)
-            cv2.imshow('frame',self.gray)
+            cv2.imshow('frame',self.cv_image)
 
         except CvBridgeError as e:
             print(e)
