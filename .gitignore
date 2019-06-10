@@ -109,3 +109,4 @@ venv.bak/
 .vscode
 
 .idea
+scripts/XDG_CACHE_HOME/*
