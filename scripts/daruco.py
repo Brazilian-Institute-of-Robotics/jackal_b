@@ -5,7 +5,6 @@ import sys
 sys.path.append("./.local/lib/python3.5/site-packages")
 import numpy as np
 import cv2
-import sys
 #sys.path.append("/home/marco/env_marco/lib/python3.6/site-packages")
 #sys.path.append("/home/marco/env_marco/lib/python3.6/site-packages")
 #sys.path.append('/home/marco/anaconda3/lib/python3.6/site-packages')

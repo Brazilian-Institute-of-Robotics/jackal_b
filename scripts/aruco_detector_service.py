@@ -9,7 +9,6 @@ from std_msgs.msg import Float64
 from std_msgs.msg import String
 from std_msgs.msg import Bool
 from sensor_msgs.msg import Image
-from dynamixel_msgs.msg import JointState
 from cv_bridge import CvBridge, CvBridgeError
 from math import pi
 from std_srvs.srv import *
@@ -43,7 +42,7 @@ class camera_service():
             print(e)
 
     def take_picture_callback(self,req):
-         cv2.imwrite('/home/fredlaranja/Pictures/aruco.png', self.cv_image)
+         cv2.imwrite('/home/senai/Imagens/aruco.png', self.cv_image)
          return TriggerResponse(True, "hi")
 
 
