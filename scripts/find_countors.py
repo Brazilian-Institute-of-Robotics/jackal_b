@@ -27,7 +27,6 @@ while True:
     img = cv2.drawContours(im, [cnt], 0, (0,255,0), 3)
     #cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
     #Contour area
-    cnt = contours[0]
     area = cv2.contourArea(cnt)
     if area == 5852:
         font = cv2.FONT_HERSHEY_SIMPLEX

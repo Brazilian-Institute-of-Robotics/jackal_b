@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import numpy as np
+import cv2
+import sys
+
+class ransac:
+    def __init__ (self):
+        self.im = cv2.VideoCapture(0)
+
+
+    def filters (self):
+        # Capture frame-by-frame
+        _, self.frame = self.im.read()
+        #Método para transformar a imagem em greyscale
+        self.gray = cv2.cvtColor(self.frame, cv2.COLOR_BGR2GRAY)
+        #Para separar o que é preto de branco:
+        ret, self.thresh = cv2.threshold(self.gray, 118, 255, cv2.THRESH_BINARY)
+        self.th3 = cv2.adaptiveThreshold(self.gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
+            cv2.THRESH_BINARY,11,2)
+        #Métodos para achar contornos
+        self.edges = cv2.Canny(self.thresh,0,200)
+    def coords_saving (self):
+        #The numpy.where() method to retrieve a tuple indices of two arrays where the first array contains the x-coordinates of the white points and the second array contains the y-coordinates of the white pixels.
+        indices = np.where(self.edges != [0])
+        coordinates = zip(indices[0], indices[1])
+        print (coordinates)
+    def imgshow(self):
+        #while (True):
+
+        cv2.imshow('frame',self.edges)
+        #Para cancelar o programa com ctrl c
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            None
+
+
+if __name__ == "__main__":
+    rec = ransac()
+
+    while True:
+        rec.filters()
+        rec.imgshow()
+        rec.coords_saving()
+
+
+
+    #%%
+
