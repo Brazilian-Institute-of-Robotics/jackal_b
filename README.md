@@ -3,6 +3,7 @@
 ## Guide to use Jackal goaltogoal
 
 ------------------------- RUN JACKAL --------------------
+
 1- Build and source 
  cd jackal_ws; catkin_make; source devel/setup.bash
  
