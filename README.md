@@ -1,6 +1,6 @@
 # jackal_b
 
-# Guide to use Jackal goaltogoal
+## Guide to use Jackal goaltogoal
 
 ------------------------- RUN JACKAL --------------------
 1- Build and source 
