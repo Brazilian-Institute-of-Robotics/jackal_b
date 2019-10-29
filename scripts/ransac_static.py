@@ -31,7 +31,20 @@ class ransac:
         three_points = self.lista
         if len(three_points) < 3:
             three_points.append(random_coords)
-        print (three_points[0:1])
+
+        if len(three_points) == 3: 
+            x_1 =three_points[0][0]
+            x_2 = three_points[1][0]
+            xm = (x_1+x_2)/2
+            y_1 = three_points[0][1]
+            y_2 = three_points[1][1]
+            ym = (y_1+y_2)/2
+            pm = (xm+ym)/2
+            print((ym))
+            print(xm)
+            print(pm)
+            
+
 
 
 

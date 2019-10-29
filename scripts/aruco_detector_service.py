@@ -42,7 +42,7 @@ class camera_service():
             print(e)
 
     def take_picture_callback(self,req):
-         cv2.imwrite('/home/senai/Imagens/aruco.png', self.cv_image)
+         cv2.imwrite('/home/senai/Imagens/aruco2.png', self.cv_image)
          return TriggerResponse(True, "hi")
 
 
